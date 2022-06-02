@@ -8,5 +8,6 @@ pylint
 pytest
 requests
 seaborn
+tqdm
 sklearn
 yellowbrick
