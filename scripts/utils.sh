@@ -1,17 +1,15 @@
 #!/bin/bash
-function append_bashrc {
-  tee -a $HOME/.profile <<EOF  
-    if [ -n "$BASH_VERSION" ]; then
-      if [ -f "$HOME/.bashrc" ]; then
-          . "$HOME/.bashrc"
-      fi
-    fi
-}
-
 function init_venv {
+  conda deactivate  # activated by default in Sagemaker Studio Lab
   python3 -m venv $1
   echo "Appending path to venv to .bashrc..."
-  source $1/bin/activate" >> $HOME/.bashrc
+  echo "source $1/bin/activate" >> $HOME/.bashrc
+  
+  echo "Appending to .gitignore..."
+  echo "source $1/bin/activate" >> .gitignore
+  
+  echo "Activating venv..."
+  source $1/bin/activate
 }
 
 function install_pip {
